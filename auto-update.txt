@@ -1,0 +1,78 @@
+# Auto Update Guide for Novel-to-Script Project
+
+## First Time Setup (Main Computer)
+
+1. Install Required Software:
+   - Git (https://git-scm.com/downloads)
+   - Docker Desktop (https://www.docker.com/products/docker-desktop)
+
+2. Create GitHub Repository:
+   - Go to https://github.com
+   - Create a new repository
+   - Note down the repository URL (e.g., https://github.com/username/creatdatabyai.git)
+
+3. Initialize Git Repository:
+   - Double click `init_git.bat`
+   - When prompted, enter your repository URL
+   - Wait for initialization to complete
+
+## First Time Setup (New Computer)
+
+1. Install Required Software:
+   - Git (https://git-scm.com/downloads)
+   - Docker Desktop (https://www.docker.com/products/docker-desktop)
+
+2. Clone Repository:
+   - Open command prompt
+   - Navigate to desired directory
+   - Run: git clone <your-repository-url>
+   - Run: cd creatdatabyai
+
+3. Start Docker:
+   - Run: docker-compose up --build -d
+   - Check http://localhost:8000 to verify
+
+## Regular Update Process
+
+On Main Computer (After Making Changes):
+1. Double click `sync_changes.bat`
+2. Enter a message describing your changes
+3. Wait for sync to complete
+
+On New Computer (To Get Updates):
+1. Double click `sync_changes.bat`
+2. Press Enter when prompted for commit message (if no local changes)
+3. Wait for sync and Docker rebuild to complete
+
+## Troubleshooting
+
+If sync fails:
+1. Check internet connection
+2. Ensure Docker Desktop is running
+3. Try manual commands:
+   ```
+   git pull origin master
+   docker-compose down
+   docker-compose up --build -d
+   ```
+
+If Docker fails:
+1. Check Docker Desktop status
+2. Try restarting Docker Desktop
+3. Check port 8000 is not in use
+
+## File Structure
+
+Important files for updates:
+- sync_changes.bat: Script for syncing changes
+- init_git.bat: First-time Git setup
+- .gitignore: Specifies which files not to sync
+- docker-compose.yml: Docker configuration
+- requirements.txt: Python dependencies
+
+## Notes
+
+- Always commit your changes before pulling updates
+- Docker will automatically rebuild if dependencies change
+- The .env file is included in sync (as it contains no sensitive data)
+- Backup your data before major updates 

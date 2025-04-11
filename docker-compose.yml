@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: novel_to_script
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped 
