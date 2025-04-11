@@ -1,6 +1,7 @@
 # 环境变量文件
 .env
 .env.*
+!.env.example
 
 # Python相关
 __pycache__/
@@ -42,5 +43,17 @@ Thumbs.db
 *.tar
 project_backup/
 
-# Keep .env for this project since we don't have sensitive information
-# .env 
+# 日志文件
+*.log
+
+# 本地配置文件
+config/local.py
+config/local.json
+
+# 测试文件
+tests/samples/*.txt
+
+# 临时文件
+*.tmp
+*.bak
+*.backup 

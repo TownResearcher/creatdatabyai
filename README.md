@@ -1,44 +1,71 @@
-# API密钥管理指南
+# Novel-to-Script Data Generator
 
-## 配置文件说明
+一个用于将小说转换为剧本数据集的AI工具。
 
-本项目使用`.env`文件来管理所有AI服务的API密钥。这种方式可以：
-1. 保护您的敏感信息不被泄露
-2. 方便在不同环境中切换不同的API密钥
-3. 避免将密钥直接硬编码在代码中
+## 项目结构
 
-## 使用方法
+```
+.
+├── backend/           # 后端代码
+├── frontend/         # 前端代码
+├── api_docs/         # API文档
+├── docs/             # 项目文档
+├── tests/            # 测试文件
+│   └── samples/      # 测试样本
+├── scripts/          # 脚本文件
+├── .env.example      # 环境变量模板
+├── .gitignore        # Git忽略文件
+├── Dockerfile        # Docker配置
+├── docker-compose.yml # Docker编排
+├── main.py           # 主程序入口
+└── requirements.txt  # 依赖列表
+```
 
-1. 复制`.env`文件中的所有内容
-2. 将每个`your_xxx_api_key_here`替换为实际的API密钥
-3. 确保`.env`文件已被添加到`.gitignore`中，避免意外提交到版本控制系统
+## 快速开始
 
-## 支持的API服务
+1. 克隆仓库：
+```bash
+git clone https://github.com/TownResearcher/creatdatabyai.git
+cd creatdatabyai
+```
 
-- OpenAI API
-- Anthropic API
-- Google API
-- Mistral API
-- Cohere API
-- Google Gemini API
+2. 配置环境：
+```bash
+cp .env.example .env
+# 编辑.env文件填入您的配置
+```
 
-## 安全提示
+3. 启动服务：
+```bash
+docker-compose up --build -d
+```
 
-- 永远不要将`.env`文件提交到代码仓库
-- 定期更换API密钥
-- 使用最小权限原则，只授予必要的API访问权限
-- 考虑使用API密钥轮换机制
+4. 访问应用：
+打开浏览器访问 http://localhost:8000
 
-## 环境变量使用示例
+## 文档
 
-在Python中使用示例：
-```python
-import os
-from dotenv import load_dotenv
+- [系统架构](docs/system_architecture.md)
+- [迁移指南](docs/MIGRATION_CHECKLIST.md)
+- [API文档](api_docs/README.md)
 
-load_dotenv()
+## 开发指南
 
-openai_api_key = os.getenv('OPENAI_API_KEY')
-anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
-gemini_api_key = os.getenv('GEMINI_API_KEY')
-``` 
+1. 安装依赖：
+```bash
+pip install -r requirements.txt
+```
+
+2. 运行测试：
+```bash
+python -m pytest tests/
+```
+
+3. 提交更改：
+```bash
+./scripts/sync_changes.bat
+```
+
+## 许可证
+
+MIT License 
